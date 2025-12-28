@@ -11,9 +11,8 @@ DWorkflow 背后的理念很简单：掌控你的代码。通过将上下文视�
 ## Features (特性)
 
 -   **Plan before you build (谋定而后动)**：为新代码库和现有代码库创建指导智能体的 Spec (规格) 和 Plan (计划)。
--   **Maintain context (保持上下文)**：确保 AI 遵循规范、技术栈选择和产品目标。
--   **Iterate safely (安全迭代)**：在编写代码之前审查计划，让你牢牢掌握控制权。
--   **Work as a team (团队协作)**：为你的产品、技术栈和工作流偏好设置项目级上下文，使其成为团队的共享基础。
+-   **Maintain context (保持上下文)**：确保 AI 遵循规范、技术架构选择和产品目标。
+-   **Work as a team (团队协作)**：为你的产品、技术架构和工作流偏好设置项目级上下文，使其成为团队的共享基础。
 -   **Build on existing projects (基于现有项目构建)**：针对新项目 (Greenfield) 和现有项目 (Brownfield) 的智能初始化。
 -   **Smart revert (智能回滚)**：Git 感知的回滚命令，理解工作逻辑单元（任务清单, Phase, Task）而不仅仅是 Commit Hash。
 
@@ -22,7 +21,7 @@ DWorkflow 背后的理念很简单：掌控你的代码。通过将上下文视�
 在终端运行以下命令安装 DWorkflow 扩展：
 
 ```bash
-gemini extensions install https://github.com/gemini-cli-extensions/DWorkflow --auto-update
+gemini extensions install https://github.com/91270/DWorkflow --auto-update
 ```
 
 `--auto-update` 是可选的：如果指定，它将在新版本发布时自动更新。
@@ -39,13 +38,13 @@ DWorkflow 旨在管理开发任务的整个生命周期。
 
 -   **Product (产品)**：定义项目上下文（例如用户、产品目标、高级功能）。
 -   **Product guidelines (产品指南)**：定义标准（例如文案风格、品牌信息、视觉识别）。
--   **Tech stack (技术栈)**：配置技术偏好（例如语言、数据库、框架）。
+-   **Tech architecture (技术架构)**：配置技术偏好（例如语言、数据库、框架、系统架构、运维方案）。
 -   **Workflow (工作流)**：设置团队偏好（例如 TDD、提交策略）。使用 [workflow.md](templates/workflow.md) 作为可自定义的模板。
 
 **生成的工件 (Artifacts)：**
 -   `.Docs/产品手册.md`
 -   `.Docs/设计规范.md`
--   `.Docs/技术栈.md`
+-   `.Docs/技术架构.md`
 -   `.Docs/工作流.md`
 -   `.Docs/代码规范/`
 -   `.Docs/任务清单.md`
@@ -106,7 +105,7 @@ DWorkflow 将：
 
 | Command | Description (描述) | Artifacts (工件) |
 | :--- | :--- | :--- |
-| `/DW:setup` | 搭建项目脚手架并设置 DWorkflow 环境。每个项目运行一次。 | `.Docs/产品手册.md`<br>`.Docs/设计规范.md`<br>`.Docs/技术栈.md`<br>`.Docs/工作流.md`<br>`.Docs/任务清单.md` |
+| `/DW:setup` | 搭建项目脚手架并设置 DWorkflow 环境。每个项目运行一次。 | `.Docs/产品手册.md`<br>`.Docs/设计规范.md`<br>`.Docs/技术架构.md`<br>`.Docs/工作流.md`<br>`.Docs/任务清单.md` |
 | `/DW:newTrack` | 启动新的 Feature 或 Bug 任务清单。生成 `spec.md` 和 `plan.md`。 | `.Docs/任务详情/<id>/spec.md`<br>`.Docs/任务详情/<id>/plan.md`<br>`.Docs/任务清单.md` |
 | `/DW:implement` | 执行当前任务清单的 Plan 中定义的任务。 | `.Docs/任务清单.md`<br>`.Docs/任务详情/<id>/plan.md` |
 | `/DW:status` | 显示任务清单文件和活动任务清单的当前进度。 | 读取 `.Docs/任务清单.md` |
@@ -115,7 +114,7 @@ DWorkflow 将：
 ## Resources (资源)
 
 -   [Gemini CLI extensions](https://geminicli.com/docs/extensions/): 关于在 Gemini CLI 中使用扩展的文档
--   [GitHub issues](https://github.com/gemini-cli-extensions/DWorkflow/issues): 报告 Bug 或请求功能
+-   [GitHub issues](https://github.com/91270/DWorkflow/issues): 报告 Bug 或请求功能
 
 ## Legal (法律信息)
 
