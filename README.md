@@ -1,122 +1,122 @@
-# Conductor Extension for Gemini CLI
+# Gemini CLI 的 Conductor 扩展 (Conductor Extension)
 
-**Measure twice, code once.**
+**三思而后行，一次把代码写对。**
 
-Conductor is a Gemini CLI extension that enables **Context-Driven Development**. It turns the Gemini CLI into a proactive project manager that follows a strict protocol to specify, plan, and implement software features and bug fixes.
+Conductor 是一个 Gemini CLI 扩展，旨在实现 **上下文驱动开发 (Context-Driven Development)**。它将 Gemini CLI 转变为一个主动的项目经理，遵循严格的协议来制定规范、规划并实现软件功能和 Bug 修复。
 
-Instead of just writing code, Conductor ensures a consistent, high-quality lifecycle for every task: **Context -> Spec & Plan -> Implement**.
+Conductor 不仅仅是写代码，它确保每个任务都拥有连贯、高质量的生命周期：**Context (上下文) -> Spec (规格) -> Plan (计划) -> Implement (实现)**。
 
-The philosophy behind Conductor is simple: control your code. By treating context as a managed artifact alongside your code, you transform your repository into a single source of truth that drives every agent interaction with deep, persistent project awareness.
+Conductor 背后的理念很简单：掌控你的代码。通过将上下文视为与代码并存的受管工件，你将代码库转变为单一事实来源 (Single Source of Truth)，从而以深度、持久的项目感知能力驱动每一次 AI 智能体交互。
 
-## Features
+## Features (特性)
 
-- **Plan before you build**: Create specs and plans that guide the agent for new and existing codebases.
-- **Maintain context**: Ensure AI follows style guides, tech stack choices, and product goals.
-- **Iterate safely**: Review plans before code is written, keeping you firmly in the loop.
-- **Work as a team**: Set project-level context for your product, tech stack, and workflow preferences that become a shared foundation for your team.
-- **Build on existing projects**: Intelligent initialization for both new (Greenfield) and existing (Brownfield) projects.
-- **Smart revert**: A git-aware revert command that understands logical units of work (tracks, phases, tasks) rather than just commit hashes.
+-   **Plan before you build (谋定而后动)**：为新代码库和现有代码库创建指导智能体的 Spec (规格) 和 Plan (计划)。
+-   **Maintain context (保持上下文)**：确保 AI 遵循风格指南、技术栈选择和产品目标。
+-   **Iterate safely (安全迭代)**：在编写代码之前审查计划，让你牢牢掌握控制权。
+-   **Work as a team (团队协作)**：为你的产品、技术栈和工作流偏好设置项目级上下文，使其成为团队的共享基础。
+-   **Build on existing projects (基于现有项目构建)**：针对新项目 (Greenfield) 和现有项目 (Brownfield) 的智能初始化。
+-   **Smart revert (智能回滚)**：Git 感知的回滚命令，理解工作逻辑单元（Track, Phase, Task）而不仅仅是 Commit Hash。
 
-## Installation
+## Installation (安装)
 
-Install the Conductor extension by running the following command from your terminal:
+在终端运行以下命令安装 Conductor 扩展：
 
 ```bash
 gemini extensions install https://github.com/gemini-cli-extensions/conductor --auto-update
 ```
 
-The `--auto-update` is optional: if specified, it will update to new versions as they are released.
+`--auto-update` 是可选的：如果指定，它将在新版本发布时自动更新。
 
-## Usage
+## Usage (使用方法)
 
-Conductor is designed to manage the entire lifecycle of your development tasks.
+Conductor 旨在管理开发任务的整个生命周期。
 
-**Note on Token Consumption:** Conductor's context-driven approach involves reading and analyzing your project's context, specifications, and plans. This can lead to increased token consumption, especially in larger projects or during extensive planning and implementation phases. You can check the token consumption in the current session by running `/stats model`.
+**关于 Token 消耗的说明：** Conductor 的上下文驱动方法涉及阅读和分析项目的上下文、规格和计划。这可能会导致 Token 消耗增加，特别是在大型项目或广泛的规划和实施阶段。你可以通过运行 `/stats model` 来查看当前会话的 Token 消耗。
 
-### 1. Set Up the Project (Run Once)
+### 1. Set Up the Project (项目设置 - 仅需运行一次)
 
-When you run `/conductor:setup`, Conductor helps you define the core components of your project context. This context is then used for building new components or features by you or anyone on your team.
+运行 `/conductor:setup` 时，Conductor 会帮助你定义项目上下文的核心组件。此上下文随后将由你或你团队中的任何人用于构建新组件或功能。
 
-- **Product**: Define project context (e.g. users, product goals, high-level features).
-- **Product guidelines**: Define standards (e.g. prose style, brand messaging, visual identity).
-- **Tech stack**: Configure technical preferences (e.g. language, database, frameworks).
-- **Workflow**: Set team preferences (e.g. TDD, commit strategy). Uses [workflow.md](templates/workflow.md) as a customizable template.
+-   **Product (产品)**：定义项目上下文（例如用户、产品目标、高级功能）。
+-   **Product guidelines (产品指南)**：定义标准（例如文案风格、品牌信息、视觉识别）。
+-   **Tech stack (技术栈)**：配置技术偏好（例如语言、数据库、框架）。
+-   **Workflow (工作流)**：设置团队偏好（例如 TDD、提交策略）。使用 [workflow.md](templates/workflow.md) 作为可自定义的模板。
 
-**Generated Artifacts:**
-- `conductor/product.md`
-- `conductor/product-guidelines.md`
-- `conductor/tech-stack.md`
-- `conductor/workflow.md`
-- `conductor/code_styleguides/`
-- `conductor/tracks.md`
+**生成的工件 (Artifacts)：**
+-   `conductor/product.md`
+-   `conductor/product-guidelines.md`
+-   `conductor/tech-stack.md`
+-   `conductor/workflow.md`
+-   `conductor/code_styleguides/`
+-   `conductor/tracks.md`
 
 ```bash
 /conductor:setup
 ```
 
-### 2. Start a New Track (Feature or Bug)
+### 2. Start a New Track (启动新轨道 - Feature 或 Bug)
 
-When you’re ready to take on a new feature or bug fix, run `/conductor:newTrack`. This initializes a **track** — a high-level unit of work. Conductor helps you generate two critical artifacts:
+当你准备好处理新功能或 Bug 修复时，运行 `/conductor:newTrack`。这将初始化一个 **Track (轨道)** —— 一个高层级的工作单元。Conductor 帮助你生成两个关键工件：
 
-- **Specs**: The detailed requirements for the specific job. What are we building and why?
-- **Plan**: An actionable to-do list containing phases, tasks, and sub-tasks.
+-   **Specs (规格)**：特定工作的详细需求。我们要构建什么？为什么？
+-   **Plan (计划)**：包含 Phase (阶段)、Task (任务) 和 Sub-task (子任务) 的可操作待办事项列表。
 
-**Generated Artifacts:**
-- `conductor/tracks/<track_id>/spec.md`
-- `conductor/tracks/<track_id>/plan.md`
-- `conductor/tracks/<track_id>/metadata.json`
+**生成的工件：**
+-   `conductor/tracks/<track_id>/spec.md`
+-   `conductor/tracks/<track_id>/plan.md`
+-   `conductor/tracks/<track_id>/metadata.json`
 
 ```bash
 /conductor:newTrack
-# OR with a description
+# 或者带描述
 /conductor:newTrack "Add a dark mode toggle to the settings page"
 ```
 
-### 3. Implement the Track
+### 3. Implement the Track (实现轨道)
 
-Once you approve the plan, run `/conductor:implement`. Your coding agent then works through the `plan.md` file, checking off tasks as it completes them.
+批准计划后，运行 `/conductor:implement`。你的编码智能体随后将按照 `plan.md` 文件工作，在完成任务时将其勾选。
 
-**Updated Artifacts:**
-- `conductor/tracks.md` (Status updates)
-- `conductor/tracks/<track_id>/plan.md` (Status updates)
-- Project context files (Synchronized on completion)
+**更新的工件：**
+-   `conductor/tracks.md` (状态更新)
+-   `conductor/tracks/<track_id>/plan.md` (状态更新)
+-   项目上下文文件 (完成后同步)
 
 ```bash
 /conductor:implement
 ```
 
-Conductor will:
-1.  Select the next pending task.
-2.  Follow the defined workflow (e.g., TDD: Write Test -> Fail -> Implement -> Pass).
-3.  Update the status in the plan as it progresses.
-4.  **Verify Progress**: Guide you through a manual verification step at the end of each phase to ensure everything works as expected.
+Conductor 将：
+1.  选择下一个待处理的任务。
+2.  遵循定义的工作流（例如，TDD：编写测试 -> 失败 -> 实现 -> 通过）。
+3.  随着进度更新计划中的状态。
+4.  **Verify Progress (验证进度)**：在每个阶段结束时引导你进行手动验证步骤，以确保一切按预期工作。
 
-During implementation, you can also:
+在实现过程中，你还可以：
 
-- **Check status**: Get a high-level overview of your project's progress.
-  ```bash
-  /conductor:status
-  ```
-- **Revert work**: Undo a feature or a specific task if needed.
-  ```bash
-  /conductor:revert
-  ```
+-   **Check status (检查状态)**：获取项目进度的概览。
+    ```bash
+    /conductor:status
+    ```
+-   **Revert work (回滚工作)**：如果需要，撤销功能或特定任务。
+    ```bash
+    /conductor:revert
+    ```
 
-## Commands Reference
+## Commands Reference (命令参考)
 
-| Command | Description | Artifacts |
+| Command | Description (描述) | Artifacts (工件) |
 | :--- | :--- | :--- |
-| `/conductor:setup` | Scaffolds the project and sets up the Conductor environment. Run this once per project. | `conductor/product.md`<br>`conductor/product-guidelines.md`<br>`conductor/tech-stack.md`<br>`conductor/workflow.md`<br>`conductor/tracks.md` |
-| `/conductor:newTrack` | Starts a new feature or bug track. Generates `spec.md` and `plan.md`. | `conductor/tracks/<id>/spec.md`<br>`conductor/tracks/<id>/plan.md`<br>`conductor/tracks.md` |
-| `/conductor:implement` | Executes the tasks defined in the current track's plan. | `conductor/tracks.md`<br>`conductor/tracks/<id>/plan.md` |
-| `/conductor:status` | Displays the current progress of the tracks file and active tracks. | Reads `conductor/tracks.md` |
-| `/conductor:revert` | Reverts a track, phase, or task by analyzing git history. | Reverts git history |
+| `/conductor:setup` | 搭建项目脚手架并设置 Conductor 环境。每个项目运行一次。 | `conductor/product.md`<br>`conductor/product-guidelines.md`<br>`conductor/tech-stack.md`<br>`conductor/workflow.md`<br>`conductor/tracks.md` |
+| `/conductor:newTrack` | 启动新的 Feature 或 Bug Track。生成 `spec.md` 和 `plan.md`。 | `conductor/tracks/<id>/spec.md`<br>`conductor/tracks/<id>/plan.md`<br>`conductor/tracks.md` |
+| `/conductor:implement` | 执行当前 Track 的 Plan 中定义的任务。 | `conductor/tracks.md`<br>`conductor/tracks/<id>/plan.md` |
+| `/conductor:status` | 显示 Tracks 文件和活动 Tracks 的当前进度。 | 读取 `conductor/tracks.md` |
+| `/conductor:revert` | 通过分析 git 历史记录回滚 Track, Phase, 或 Task。 | 回滚 git 历史 |
 
-## Resources
+## Resources (资源)
 
-- [Gemini CLI extensions](https://geminicli.com/docs/extensions/): Documentation about using extensions in Gemini CLI
-- [GitHub issues](https://github.com/gemini-cli-extensions/conductor/issues): Report bugs or request features
+-   [Gemini CLI extensions](https://geminicli.com/docs/extensions/): 关于在 Gemini CLI 中使用扩展的文档
+-   [GitHub issues](https://github.com/gemini-cli-extensions/conductor/issues): 报告 Bug 或请求功能
 
-## Legal
+## Legal (法律信息)
 
-- License: [Apache License 2.0](LICENSE)
+-   License: [Apache License 2.0](LICENSE)

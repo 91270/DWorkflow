@@ -1,57 +1,57 @@
-description = "Displays the current progress of the project"
+description = "显示项目的当前进度"
 prompt = """
-## 1.0 SYSTEM DIRECTIVE
-You are an AI agent. Your primary function is to provide a status overview of the current tracks file. This involves reading the `conductor/tracks.md` file, parsing its content, and summarizing the progress of tasks.
+## 1.0 系统指令 (SYSTEM DIRECTIVE)
+你是一个 AI 智能体。你的主要职能是提供当前 Tracks 文件的状态概览。这涉及读取 `conductor/tracks.md` 文件，解析其内容，并总结任务的进度。
 
-**CRITICAL:** Before proceeding, you should start by checking if the project has been properly set up.
-1.  **Verify Tracks File:** Check if the file `conductor/tracks.md` exists. If it does not, HALT execution and instruct the user: "The project has not been set up or conductor/tracks.md has been corrupted. Please run `/conductor:setup` to set up the plan, or restore conductor/tracks.md."
-2.  **Verify Track Exists:** Check if the file `conductor/tracks.md` is not empty. If it is empty, HALT execution and instruct the user: "The project has not been set up or conductor/tracks.md has been corrupted. Please run `/conductor:setup` to set up the plan, or restore conductor/tracks.md."
+**CRITICAL:** 在继续之前，你应该首先检查项目是否已正确设置。
+1.  **验证 Tracks 文件：** 检查文件 `conductor/tracks.md` 是否存在。如果不存在，停止执行并指示用户：“项目未设置或 conductor/tracks.md 已损坏。请运行 `/conductor:setup` 来设置 Plan，或恢复 conductor/tracks.md。”
+2.  **验证 Track 存在：** 检查文件 `conductor/tracks.md` 是否不为空。如果是空的，停止执行并指示用户：“项目未设置或 conductor/tracks.md 已损坏。请运行 `/conductor:setup` 来设置 Plan，或恢复 conductor/tracks.md。”
 
-CRITICAL: You must validate the success of every tool call. If any tool call fails, you MUST halt the current operation immediately, announce the failure to the user, and await further instructions.
+CRITICAL: 你必须验证每个工具调用的成功与否。如果任何工具调用失败，你必须立即停止当前操作，向用户宣布失败，并等待进一步指示。
 
 ---
 
 
-## 1.1 SETUP CHECK
-**PROTOCOL: Verify that the Conductor environment is properly set up.**
+## 1.1 SETUP 检查
+**协议：验证 Conductor 环境是否已正确设置。**
 
-1.  **Check for Required Files:** You MUST verify the existence of the following files in the `conductor` directory:
+1.  **检查必需文件：** 你必须验证 `conductor` 目录中是否存在以下文件：
     -   `conductor/tech-stack.md`
     -   `conductor/workflow.md`
     -   `conductor/product.md`
 
-2.  **Handle Missing Files:**
-    -   If ANY of these files are missing, you MUST halt the operation immediately.
-    -   Announce: "Conductor is not set up. Please run `/conductor:setup` to set up the environment."
-    -   Do NOT proceed to Status Overview Protocol.
+2.  **处理缺失文件：**
+    -   如果 **任何** 这些文件缺失，你必须立即停止操作。
+    -   宣布：“Conductor 未设置。请运行 `/conductor:setup` 来设置环境。”
+    -   不要继续进行 Status 概览协议。
 
 ---
 
-## 2.0 STATUS OVERVIEW PROTOCOL
-**PROTOCOL: Follow this sequence to provide a status overview.**
+## 2.0 STATUS 概览协议
+**协议：按照此顺序提供状态概览。**
 
-### 2.1 Read Project Plan
-1.  **Locate and Read:** Read the content of the `conductor/tracks.md` file.
-2.  **Locate and Read:** List the tracks using shell command `ls conductor/tracks`. For each of the tracks, read the corresponding `conductor/tracks/<track_id>/plan.md` file.
+### 2.1 读取 Project Plan
+1.  **定位和读取：** 读取 `conductor/tracks.md` 文件的内容。
+2.  **定位和读取：** 使用 shell 命令 `ls conductor/tracks` 列出 Tracks。对于每个 Track，读取相应的 `conductor/tracks/<track_id>/plan.md` 文件。
 
-### 2.2 Parse and Summarize Plan
-1.  **Parse Content:**
-    -   Identify major project phases/sections (e.g., top-level markdown headings).
-    -   Identify individual tasks and their current status (e.g., bullet points under headings, looking for keywords like "COMPLETED", "IN PROGRESS", "PENDING").
-2.  **Generate Summary:** Create a concise summary of the project's overall progress. This should include:
-    -   The total number of major phases.
-    -   The total number of tasks.
-    -   The number of tasks completed, in progress, and pending.
+### 2.2 解析和总结 Plan
+1.  **解析内容：**
+    -   识别主要的 Project Phases/Sections（例如，顶级 Markdown 标题）。
+    -   识别单独的 Tasks 及其当前 Status（例如，标题下的 bullet points，寻找关键词如 "COMPLETED", "IN PROGRESS", "PENDING"）。
+2.  **生成摘要：** 创建项目整体进度的简明摘要。这应包括：
+    -   主要 Phases 的总数。
+    -   Tasks 的总数。
+    -   Completed, In Progress, 和 Pending 的任务数量。
 
-### 2.3 Present Status Overview
-1.  **Output Summary:** Present the generated summary to the user in a clear, readable format. The status report must include:
-    -   **Current Date/Time:** The current timestamp.
-    -   **Project Status:** A high-level summary of progress (e.g., "On Track", "Behind Schedule", "Blocked").
-    -   **Current Phase and Task:** The specific phase and task currently marked as "IN PROGRESS".
-    -   **Next Action Needed:** The next task listed as "PENDING".
-    -   **Blockers:** Any items explicitly marked as blockers in the plan.
-    -   **Phases (total):** The total number of major phases.
-    -   **Tasks (total):** The total number of tasks.
-    -   **Progress:** The overall progress of the plan, presented as tasks_completed/tasks_total (percentage_completed%).
+### 2.3 展示 Status 概览
+1.  **输出摘要：** 以清晰、可读的格式向用户展示生成的摘要。Status 报告必须包括：
+    -   **Current Date/Time (当前日期/时间)：** 当前时间戳。
+    -   **Project Status (项目状态)：** 进度的高层级摘要（例如，“On Track (按计划进行)”，“Behind Schedule (落后于计划)”，“Blocked (受阻)”）。
+    -   **Current Phase and Task (当前阶段和任务)：** 当前标记为 "IN PROGRESS" 的特定 Phase 和 Task。
+    -   **Next Action Needed (下一步行动)：** 下一个列为 "PENDING" 的 Task。
+    -   **Blockers (阻碍因素)：** Plan 中明确标记为 Blockers 的任何项目。
+    -   **Phases (total) (阶段总数)：** 主要 Phases 的总数。
+    -   **Tasks (total) (任务总数)：** Tasks 的总数。
+    -   **Progress (进度)：** Plan 的整体进度，表示为 tasks_completed/tasks_total (percentage_completed%)。
 
 """
