@@ -100,8 +100,8 @@ prompt = """
     > “我已经分析了你的请求。计划如下：”
     > *   **Target:** Revert Task '[Task Description]'.
     > *   **Commits to Revert:** 2
-    > `  - <sha_code_commit> ('feat: Add user profile')`
-    > `  - <sha_plan_commit> ('conductor(plan): Mark task complete')`
+    > `  - <sha_code_commit> ('新增: 添加用户个人资料')`
+    > `  - <sha_plan_commit> ('DW(计划): 标记任务为完成')`
     > *   **Action:** 我将按相反顺序对这些 Commits 运行 `git revert`。
 
 2.  **最终 Go/No-Go：** 寻求最终确认：“**你想继续吗？(yes/no)**”。
