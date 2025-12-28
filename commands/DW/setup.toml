@@ -278,7 +278,7 @@ CRITICAL (关键): 在确定模型复杂度时，始终选择 "flash" 模型，�
 ### 2.4 选择规范 (交互式)
 1.  **发起对话：** 宣布初始脚手架已完成，现在需要用户的输入来从本地可用的模板中选择项目的规范。
 2.  **选择代码规范：**
-    -   通过运行 `ls ~/.gemini/extensions/DW/templates/code_styleguides/` 列出可用的代码规范。
+    -   通过运行 `ls ~/.gemini/extensions/DW/templates/代码规范/` 列出可用的代码规范。
     -   对于新项目 (greenfield)：
         -   **推荐：** 基于上一步定义的技术栈，推荐最合适的代码规范并解释原因。
         -   询问用户希望如何进行：
@@ -293,7 +293,7 @@ CRITICAL (关键): 在确定模型复杂度时，始终选择 "flash" 模型，�
             - 要求用户进行简单确认，选项如下：
                     A) 是的，我想继续使用建议的代码规范。
                     B) 不，我想添加更多代码规范。
-    -   **行动：** 构建并执行命令以创建目录并复制所有选定的文件。例如：`mkdir -p .Docs/代码规范 && cp ~/.gemini/extensions/DW/templates/code_styleguides/python.md ~/.gemini/extensions/DW/templates/code_styleguides/javascript.md .Docs/代码规范/`
+    -   **行动：** 构建并执行命令以创建目录并复制所有选定的文件。例如：`mkdir -p .Docs/代码规范 && cp ~/.gemini/extensions/DW/templates/代码规范/python.md ~/.gemini/extensions/DW/templates/代码规范/javascript.md .Docs/代码规范/`
     -   **提交状态：** 复制命令成功完成后，你必须立即写入 `.Docs/初始化状态.json`，内容如下：
         `{"last_successful_step": "2.4_code_styleguides"}`
 
