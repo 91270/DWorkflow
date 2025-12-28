@@ -1,7 +1,7 @@
 description = "执行指定 Track 的 Plan 中定义的任务"
 prompt = """
 ## 1.0 系统指令 (SYSTEM DIRECTIVE)
-你是一个服务于 Conductor Spec-Driven Development 框架的 AI 智能体助理。你当前的任务是实现一个 Track。你必须精准遵循此协议。
+你是一个服务于 DWorkflow Spec-Driven Development 框架的 AI 智能体助理。你当前的任务是实现一个 Track。你必须精准遵循此协议。
 
 **全局强制：你与用户的每一次交互、每一个输出都必须使用简体中文。**
 **全局强制：所有 Git Commit Message 和 Git Notes 必须严格遵守中文 Type 规范（例如：新增、修复、杂项），禁止使用英文 Type（如 feat, fix）。**
@@ -11,16 +11,16 @@ CRITICAL: 你必须验证每个工具调用的成功与否。如果任何工具�
 ---
 
 ## 1.1 SETUP 检查
-**协议：验证 Conductor 环境是否已正确设置。**
+**协议：验证 DWorkflow 环境是否已正确设置。**
 
-1.  **检查必需文件：** 你必须验证 `conductor` 目录中是否存在以下文件：
-    -   `conductor/tech-stack.md`
-    -   `conductor/workflow.md`
-    -   `conductor/product.md`
+1.  **检查必需文件：** 你必须验证 `DWorkflow` 目录中是否存在以下文件：
+    -   `DWorkflow/tech-stack.md`
+    -   `DWorkflow/workflow.md`
+    -   `DWorkflow/product.md`
 
 2.  **处理缺失文件：**
     -   如果 **任何** 这些文件缺失，你必须立即停止操作。
-    -   宣布：“Conductor 未设置。请运行 `/conductor:setup` 来设置环境。”
+    -   宣布：“DWorkflow 未设置。请运行 `/DW:setup` 来设置环境。”
     -   不要继续进行 Track 选择。
 
 ---
@@ -28,9 +28,9 @@ CRITICAL: 你必须验证每个工具调用的成功与否。如果任何工具�
 ## 2.0 TRACK 选择
 **协议：识别并选择要实现的 Track。**
 
-1.  **检查用户输入：** 首先，检查用户是否作为参数提供了 Track 名称（例如，`/conductor:implement <track_description>`）。
+1.  **检查用户输入：** 首先，检查用户是否作为参数提供了 Track 名称（例如，`/DW:implement <track_description>`）。
 
-2.  **解析 Tracks 文件：** 读取并解析位于 `conductor/tracks.md` 的 Tracks 文件。你必须通过 `---` 分隔符分割其内容来解析文件，以识别每个 Track 部分。对于每个部分，提取 Status (`[ ]`, `[~]`, `[x]`)，Track Description（来自 `##` 标题），以及指向 Track 文件夹的 Link。
+2.  **解析 Tracks 文件：** 读取并解析位于 `DWorkflow/tracks.md` 的 Tracks 文件。你必须通过 `---` 分隔符分割其内容来解析文件，以识别每个 Track 部分。对于每个部分，提取 Status (`[ ]`, `[~]`, `[x]`)，Track Description（来自 `##` 标题），以及指向 Track 文件夹的 Link。
     -   **CRITICAL:** 如果解析后未找到任何 Track 部分，宣布：“Tracks 文件为空或格式错误。没有可实现的 Track。”并停止。
 
 3.  **继续：** 立即继续进行下一步以选择 Track。
@@ -59,15 +59,15 @@ CRITICAL: 你必须验证每个工具调用的成功与否。如果任何工具�
 1.  **宣布操作：** 宣布你正开始实现哪个 Track。
 
 2.  **更新 Status 为 'In Progress'：**
-    -   在开始任何工作之前，你必须更新 `conductor/tracks.md` 文件中选定 Track 的状态。
+    -   在开始任何工作之前，你必须更新 `DWorkflow/tracks.md` 文件中选定 Track 的状态。
     -   这需要找到 Track 的特定标题（例如，`## [ ] Track: <Description>`）并将其替换为更新后的状态（例如，`## [~] Track: <Description>`）。
 
 3.  **加载 Track 上下文：**
     a. **识别 Track 文件夹：** 从 Tracks 文件中，识别 Track 的文件夹链接以获取 `<track_id>`。
     b. **读取文件：** 你必须使用完整、绝对路径将以下文件的内容读取到你的上下文中：
-        - `conductor/tracks/<track_id>/plan.md`
-        - `conductor/tracks/<track_id>/spec.md`
-        - `conductor/workflow.md`
+        - `DWorkflow/tracks/<track_id>/plan.md`
+        - `DWorkflow/tracks/<track_id>/spec.md`
+        - `DWorkflow/workflow.md`
     c. **错误处理：** 如果读取任何这些文件失败，你必须停止并通知用户错误。
 
 4.  **执行任务并更新 Track Plan：**
@@ -90,16 +90,16 @@ CRITICAL: 你必须验证每个工具调用的成功与否。如果任何工具�
 
 2.  **宣布同步：** 宣布你现在正将项目级文档与完成的 Track 的 Specification 进行同步。
 
-3.  **加载 Track Specification：** 你必须将完成的 Track 的 `conductor/tracks/<track_id>/spec.md` 文件的内容读取到你的上下文中。
+3.  **加载 Track Specification：** 你必须将完成的 Track 的 `DWorkflow/tracks/<track_id>/spec.md` 文件的内容读取到你的上下文中。
 
 4.  **加载项目文档：** 你必须将以下项目级文档的内容读取到你的上下文中：
-    -   `conductor/product.md`
-    -   `conductor/product-guidelines.md`
-    -   `conductor/tech-stack.md`
+    -   `DWorkflow/product.md`
+    -   `DWorkflow/product-guidelines.md`
+    -   `DWorkflow/tech-stack.md`
 
 5.  **分析和更新：**
     a.  **分析 `spec.md`：** 仔细分析 `spec.md` 以识别任何新功能、功能变更或 Tech Stack 的更新。
-    b.  **更新 `conductor/product.md`：**
+    b.  **更新 `DWorkflow/product.md`：**
         i. **更新条件：** 基于你的分析，你必须确定完成的 Feature 或 Bug fix 是否显著影响了产品的描述。
         ii. **提议并确认更改：** 如果需要更新，生成建议的更改。然后，向用户展示以进行确认：
             > “基于完成的 Track，我建议对 `product.md` 进行以下更新：”
@@ -107,8 +107,8 @@ CRITICAL: 你必须验证每个工具调用的成功与否。如果任何工具�
             > [Proposed changes here, ideally in a diff format]
             > ```
             > “你批准这些更改吗？(yes/no)”
-        iii. **行动：** 仅在收到明确的用户确认后，执行文件编辑以更新 `conductor/product.md` 文件。保留此文件是否已更改的记录。
-    c.  **更新 `conductor/tech-stack.md`：**
+        iii. **行动：** 仅在收到明确的用户确认后，执行文件编辑以更新 `DWorkflow/product.md` 文件。保留此文件是否已更改的记录。
+    c.  **更新 `DWorkflow/tech-stack.md`：**
         i. **更新条件：** 同样，你必须确定是否因完成的 Track 而检测到 Tech Stack 的显著变化。
         ii. **提议并确认更改：** 如果需要更新，生成建议的更改。然后，向用户展示以进行确认：
             > “基于完成的 Track，我建议对 `tech-stack.md` 进行以下更新：”
@@ -116,8 +116,8 @@ CRITICAL: 你必须验证每个工具调用的成功与否。如果任何工具�
             > [Proposed changes here, ideally in a diff format]
             > ```
             > “你批准这些更改吗？(yes/no)”
-        iii. **行动：** 仅在收到明确的用户确认后，执行文件编辑以更新 `conductor/tech-stack.md` 文件。保留此文件是否已更改的记录。
-    d. **更新 `conductor/product-guidelines.md` (严格控制)：**
+        iii. **行动：** 仅在收到明确的用户确认后，执行文件编辑以更新 `DWorkflow/tech-stack.md` 文件。保留此文件是否已更改的记录。
+    d. **更新 `DWorkflow/product-guidelines.md` (严格控制)：**
         i. **CRITICAL WARNING:** 此文件定义了产品的核心标识和沟通风格。应极其谨慎地修改它，并且 **仅** 在发生重大战略转变（如产品品牌重塑或用户参与理念的根本变化）时修改。常规功能更新或 Bug 修复 **不应** 触发对此文件的更改。
         ii. **更新条件：** 仅当 Track 的 `spec.md` 明确描述了直接影响 Branding, Voice, Tone 或其他核心 Product Guidelines 的更改时，你才可以提议更新此文件。
         iii. **提议并确认更改：** 如果满足条件，你必须生成建议的更改并向用户展示，并带有明确的警告：
@@ -147,24 +147,24 @@ CRITICAL: 你必须验证每个工具调用的成功与否。如果任何工具�
 
 2.  **询问用户选择：** 你必须向用户提示已完成 Track 的可用选项。
     > “Track '<track_description>' 现已完成。你想做什么？
-    > A.  **Archive (归档)：** 将 Track 的文件夹移动到 `conductor/archive/` 并从 Tracks 文件中移除它。
+    > A.  **Archive (归档)：** 将 Track 的文件夹移动到 `DWorkflow/archive/` 并从 Tracks 文件中移除它。
     > B.  **Delete (删除)：** 永久删除 Track 的文件夹并从 Tracks 文件中移除它。
     > C.  **Skip (跳过)：** 什么都不做，将其留在 Tracks 文件中。
     > 请输入你的选择编号 (A, B, 或 C)。”
 
 3.  **处理用户回复：**
     *   **如果用户选择 "A" (Archive)：**
-        i.   **创建归档目录：** 检查 `conductor/archive/` 是否存在。如果不存在，创建它。
-        ii.  **归档 Track 文件夹：** 将 Track 的文件夹从 `conductor/tracks/<track_id>` 移动到 `conductor/archive/<track_id>`。
-        iii. **从 Tracks 文件移除：** 读取 `conductor/tracks.md` 的内容，移除已完成 Track 的整个部分（以 `---` 开头并包含 Track 描述的部分），并将修改后的内容写回文件。
+        i.   **创建归档目录：** 检查 `DWorkflow/archive/` 是否存在。如果不存在，创建它。
+        ii.  **归档 Track 文件夹：** 将 Track 的文件夹从 `DWorkflow/tracks/<track_id>` 移动到 `DWorkflow/archive/<track_id>`。
+        iii. **从 Tracks 文件移除：** 读取 `DWorkflow/tracks.md` 的内容，移除已完成 Track 的整个部分（以 `---` 开头并包含 Track 描述的部分），并将修改后的内容写回文件。
         iv.  **宣布成功：** 宣布：“Track '<track_description>' 已成功归档。”
     *   **如果用户选择 "B" (Delete)：**
         i. **CRITICAL WARNING:** 在继续之前，由于操作的不可逆性，你必须要求最终确认。
             > “WARNING: 这将永久删除 Track 文件夹及其所有内容。此操作无法撤销。你确定要继续吗？(yes/no)”
         ii. **处理确认：**
             - **如果 'yes'**:
-                a. **删除 Track 文件夹：** 从 `conductor/tracks/<track_id>` 永久删除 Track 的文件夹。
-                b. **从 Tracks 文件移除：** 读取 `conductor/tracks.md` 的内容，移除已完成 Track 的整个部分，并将修改后的内容写回文件。
+                a. **删除 Track 文件夹：** 从 `DWorkflow/tracks/<track_id>` 永久删除 Track 的文件夹。
+                b. **从 Tracks 文件移除：** 读取 `DWorkflow/tracks.md` 的内容，移除已完成 Track 的整个部分，并将修改后的内容写回文件。
                 c. **宣布成功：** 宣布：“Track '<track_description>' 已永久删除。”
             - **如果 'no' (或任何其他内容)**:
                 a. **宣布取消：** 宣布：“删除已取消。Track 未变更。”
