@@ -15,7 +15,7 @@ DWorkflow 背后的理念很简单：掌控你的代码。通过将上下文视�
 -   **Iterate safely (安全迭代)**：在编写代码之前审查计划，让你牢牢掌握控制权。
 -   **Work as a team (团队协作)**：为你的产品、技术栈和工作流偏好设置项目级上下文，使其成为团队的共享基础。
 -   **Build on existing projects (基于现有项目构建)**：针对新项目 (Greenfield) 和现有项目 (Brownfield) 的智能初始化。
--   **Smart revert (智能回滚)**：Git 感知的回滚命令，理解工作逻辑单元（任务轨道, Phase, Task）而不仅仅是 Commit Hash。
+-   **Smart revert (智能回滚)**：Git 感知的回滚命令，理解工作逻辑单元（任务清单, Phase, Task）而不仅仅是 Commit Hash。
 
 ## Installation (安装)
 
@@ -48,15 +48,15 @@ DWorkflow 旨在管理开发任务的整个生命周期。
 -   `.Docs/技术栈.md`
 -   `.Docs/工作流.md`
 -   `.Docs/代码规范/`
--   `.Docs/任务轨道.md`
+-   `.Docs/任务清单.md`
 
 ```bash
 /DW:setup
 ```
 
-### 2. Start a New Track (启动新任务轨道 - Feature 或 Bug)
+### 2. Start a New Track (启动新任务清单 - Feature 或 Bug)
 
-当你准备好处理新功能或 Bug 修复时，运行 `/DW:newTrack`。这将初始化一个 **任务轨道 (Track)** —— 一个高层级的工作单元。DWorkflow 帮助你生成两个关键工件：
+当你准备好处理新功能或 Bug 修复时，运行 `/DW:newTrack`。这将初始化一个 **任务清单 (Track)** —— 一个高层级的工作单元。DWorkflow 帮助你生成两个关键工件：
 
 -   **Specs (规格)**：特定工作的详细需求。我们要构建什么？为什么？
 -   **Plan (计划)**：包含 Phase (阶段)、Task (任务) 和 Sub-task (子任务) 的可操作待办事项列表。
@@ -72,12 +72,12 @@ DWorkflow 旨在管理开发任务的整个生命周期。
 /DW:newTrack "Add a dark mode toggle to the settings page"
 ```
 
-### 3. Implement the Track (实现任务轨道)
+### 3. Implement the Track (实现任务清单)
 
 批准计划后，运行 `/DW:implement`。你的编码智能体随后将按照 `plan.md` 文件工作，在完成任务时将其勾选。
 
 **更新的工件：**
--   `.Docs/任务轨道.md` (状态更新)
+-   `.Docs/任务清单.md` (状态更新)
 -   `.Docs/任务详情/<track_id>/plan.md` (状态更新)
 -   项目上下文文件 (完成后同步)
 
@@ -106,11 +106,11 @@ DWorkflow 将：
 
 | Command | Description (描述) | Artifacts (工件) |
 | :--- | :--- | :--- |
-| `/DW:setup` | 搭建项目脚手架并设置 DWorkflow 环境。每个项目运行一次。 | `.Docs/产品手册.md`<br>`.Docs/设计规范.md`<br>`.Docs/技术栈.md`<br>`.Docs/工作流.md`<br>`.Docs/任务轨道.md` |
-| `/DW:newTrack` | 启动新的 Feature 或 Bug 任务轨道。生成 `spec.md` 和 `plan.md`。 | `.Docs/任务详情/<id>/spec.md`<br>`.Docs/任务详情/<id>/plan.md`<br>`.Docs/任务轨道.md` |
-| `/DW:implement` | 执行当前任务轨道的 Plan 中定义的任务。 | `.Docs/任务轨道.md`<br>`.Docs/任务详情/<id>/plan.md` |
-| `/DW:status` | 显示任务轨道文件和活动任务轨道的当前进度。 | 读取 `.Docs/任务轨道.md` |
-| `/DW:revert` | 通过分析 git 历史记录回滚任务轨道, Phase, 或 Task。 | 回滚 git 历史 |
+| `/DW:setup` | 搭建项目脚手架并设置 DWorkflow 环境。每个项目运行一次。 | `.Docs/产品手册.md`<br>`.Docs/设计规范.md`<br>`.Docs/技术栈.md`<br>`.Docs/工作流.md`<br>`.Docs/任务清单.md` |
+| `/DW:newTrack` | 启动新的 Feature 或 Bug 任务清单。生成 `spec.md` 和 `plan.md`。 | `.Docs/任务详情/<id>/spec.md`<br>`.Docs/任务详情/<id>/plan.md`<br>`.Docs/任务清单.md` |
+| `/DW:implement` | 执行当前任务清单的 Plan 中定义的任务。 | `.Docs/任务清单.md`<br>`.Docs/任务详情/<id>/plan.md` |
+| `/DW:status` | 显示任务清单文件和活动任务清单的当前进度。 | 读取 `.Docs/任务清单.md` |
+| `/DW:revert` | 通过分析 git 历史记录回滚任务清单, Phase, 或 Task。 | 回滚 git 历史 |
 
 ## Resources (资源)
 
