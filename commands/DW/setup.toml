@@ -26,10 +26,9 @@ CRITICAL (关键): 在确定模型复杂度时，始终选择 "flash" 模型，�
     - 如果 `STEP` 是 "2.1_product_guide"，宣布“恢复 Setup 流程：产品手册 (`产品手册.md`) 已完成。接下来，我们将创建设计规范。”并继续进行 **第 2.2 节**。
     - 如果 `STEP` 是 "2.2_product_guidelines"，宣布“恢复 Setup 流程：产品手册和设计规范已完成。接下来，我们将定义技术栈。”并继续进行 **第 2.3 节**。
     - 如果 `STEP` 是 "2.3_tech_stack"，宣布“恢复 Setup 流程：产品手册、设计规范和技术栈已定义。接下来，我们将选择代码规范。”并继续进行 **第 2.4 节**。
-        -   如果 `STEP` 是 "2.4_code_styleguides"，宣布“恢复 Setup 流程：所有指南和技术栈已配置。接下来，我们将定义项目工作流。”并继续进行 **第 2.5 节**。
-        -   如果 `STEP` 是 "2.5_workflow"，宣布“恢复 Setup 流程：初始项目脚手架已完成。接下来，我们将生成扩展文档。”并继续进行 **第 2.6 节**。
-        -   如果 `STEP` 是 "2.6_extended_docs"，宣布“恢复 Setup 流程：扩展文档已生成。接下来，我们将生成第一个任务轨道。”并继续进行 **阶段 2 (3.0)**。
-        -   如果 `STEP` 是 "3.3_initial_track_generated"：
+    - 如果 `STEP` 是 "2.4_code_styleguides"，宣布“恢复 Setup 流程：所有指南和技术栈已配置。接下来，我们将定义项目工作流。”并继续进行 **第 2.5 节**。
+    - 如果 `STEP` 是 "2.5_workflow"，宣布“恢复 Setup 流程：初始项目脚手架已完成。接下来，我们将生成第一个任务轨道。”并继续进行 **阶段 2 (3.0)**。
+    - 如果 `STEP` 是 "3.3_initial_track_generated"：
         - 宣布：“项目已经初始化完毕。你可以使用 `/DW:newTrack` 创建新任务轨道，或使用 `/DW:implement` 开始实现现有任务轨道。”
         - 停止 `setup` 过程。
     - 如果 `STEP` 无法识别，宣布错误并停止。
@@ -323,24 +322,10 @@ CRITICAL (关键): 在确定模型复杂度时，始终选择 "flash" 模型，�
         -   **提交状态：** 在 `工作流.md` 文件成功写入或更新后，你必须立即写入 `.Docs/初始化状态.json`，内容如下：
             `{"last_successful_step": "2.5_workflow"}`
 
-### 2.6 生成扩展文档 (自动化)
-1.  **宣布操作：** 宣布为了支持更完善的开发管理，你现在将生成一套扩展的架构与规范文档。
-2.  **复制模板：** 执行以下文件复制操作：
-    -   `cp ~/.gemini/extensions/DW/templates/feature_list.md .Docs/功能清单.md`
-    -   `cp ~/.gemini/extensions/DW/templates/architecture_design.md .Docs/架构设计.md`
-    -   `cp ~/.gemini/extensions/DW/templates/business_process.md .Docs/业务流程.md`
-    -   `cp ~/.gemini/extensions/DW/templates/database_design.md .Docs/数据库设计.md`
-    -   `cp ~/.gemini/extensions/DW/templates/api_spec.md .Docs/API规范.md`
-    -   `cp ~/.gemini/extensions/DW/templates/ops_manual.md .Docs/运维手册.md`
-    -   `cp ~/.gemini/extensions/DW/templates/security_spec.md .Docs/安全规范.md`
-3.  **提交状态：** 所有文件复制成功后，写入状态：
-    `{"last_successful_step": "2.6_extended_docs"}`
-
-### 2.7 最终化
+### 2.6 最终化
 1.  **总结行动：** 展示阶段 1 中采取的所有行动的摘要，包括：
     -   复制的规范文件。
     -   复制的工作流文件。
-    -   生成的扩展文档集（架构、数据库、API 等）。
 2.  **过渡到初始计划和轨道生成：** 宣布初始设置已完成，你现在将继续定义项目的第一个任务轨道。
 
 ---
