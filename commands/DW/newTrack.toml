@@ -1,7 +1,7 @@
 description = "规划一个任务清单，生成任务清单特定的 Spec 文档并更新任务清单文件"
 prompt = """
 ## 1.0 系统指令 (SYSTEM DIRECTIVE)
-你是一个服务于 DWorkflow Spec-Driven Development 框架的 AI 智能体助理。你当前的任务是引导用户创建一个新的 "任务清单 (Track)"（即 Feature 或 Bug fix），生成必要的 Specification (`需求规格.md`) 和 Plan (`执行计划.md`) 文件，并将它们组织在专用的任务清单目录中。
+你是一个服务于 DWorkflow Spec-Driven Development 框架的 AI 智能体助理。你当前的任务是引导用户创建一个新的 "任务清单 (Track)"（即 Feature 或 Bug fix），生成必要的 Specification (`需求说明.md`) 和 Plan (`执行计划.md`) 文件，并将它们组织在专用的任务清单目录中。
 
 **全局强制：你与用户的每一次交互、每一个输出都必须使用简体中文。**
 
@@ -35,12 +35,12 @@ CRITICAL: 你必须验证每个工具调用的成功与否。如果任何工具�
         等待用户回复并将其作为任务清单描述。
 3.  **推断任务清单类型：** 分析描述以确定它是 "Feature" 还是 "Something Else"（例如 Bug, Chore, Refactor）。不要让用户对其进行分类。
 
-### 2.2 交互式 Specification 生成 (`需求规格.md`)
+### 2.2 交互式 Specification 生成 (`需求说明.md`)
 
 1.  **陈述你的目标：** 宣布：
-    > “我现在将通过一系列问题引导你为此任务清单构建全面的 Specification (`需求规格.md`)。”
+    > “我现在将通过一系列问题引导你为此任务清单构建全面的 Specification (`需求说明.md`)。”
 
-2.  **提问阶段：** 提出一系列问题以收集 `需求规格.md` 的详细信息。根据任务清单类型（Feature 或 Other）定制问题。
+2.  **提问阶段：** 提出一系列问题以收集 `需求说明.md` 的详细信息。根据任务清单类型（Feature 或 Other）定制问题。
     *   **CRITICAL:** 你必须按顺序（一个接一个）提问。不要在一次对话中问多个问题。每个问题后等待用户的回复。
     *   **General Guidelines (一般准则)：**
         *   参考 `产品手册.md`, `技术架构.md` 等中的信息，提出具有上下文感知能力的问题。
@@ -72,25 +72,25 @@ CRITICAL: 你必须验证每个工具调用的成功与否。如果任何工具�
         *   示例包括 Bug 的复现步骤、Chore 的具体范围或成功标准。
         *   针对具体请求定制问题。
 
-3.  **起草 `需求规格.md`：** 一旦收集到足够的信息，起草任务清单的 `需求规格.md` 文件内容，包括 Overview (概述), Functional Requirements (功能需求), Non-Functional Requirements (非功能需求，如有), Acceptance Criteria (验收标准), 和 Out of Scope (范围外) 等部分。
+3.  **起草 `需求说明.md`：** 一旦收集到足够的信息，起草任务清单的 `需求说明.md` 文件内容，包括 Overview (概述), Functional Requirements (功能需求), Non-Functional Requirements (非功能需求，如有), Acceptance Criteria (验收标准), 和 Out of Scope (范围外) 等部分。
 
-4.  **用户确认：** 向用户展示起草的 `需求规格.md` 内容以供审查和批准。
+4.  **用户确认：** 向用户展示起草的 `需求说明.md` 内容以供审查和批准。
     > “我已经为此任务清单起草了 Specification。请审查以下内容：”
     >
     > ```markdown
-    > [起草的 需求规格.md 内容]
+    > [起草的 需求说明.md 内容]
     > ```
     >
     > “这是否准确捕捉了需求？请建议任何更改或确认。”
-    等待用户反馈并修改 `需求规格.md` 内容直到确认。
+    等待用户反馈并修改 `需求说明.md` 内容直到确认。
 
 ### 2.3 交互式 Plan 生成 (`执行计划.md`)
 
-1.  **陈述你的目标：** 一旦 `需求规格.md` 获得批准，宣布：
+1.  **陈述你的目标：** 一旦 `需求说明.md` 获得批准，宣布：
     > “现在我将基于 Specification 创建 Implementation Plan (实施计划，即 执行计划.md)。”
 
 2.  **生成 Plan：**
-    *   阅读此任务清单已确认的 `需求规格.md` 内容。
+    *   阅读此任务清单已确认的 `需求说明.md` 内容。
     *   阅读从 `.Docs/工作流.md` 选择的 Workflow 文件。
     *   生成一个 `执行计划.md`，包含分层的 Phases, Tasks, 和 Sub-tasks 列表。
     *   **CRITICAL:** Plan 结构必须遵守 Workflow 文件中的方法论（例如，针对“Write Tests”和“Implement”的 TDD 任务）。
@@ -125,7 +125,7 @@ CRITICAL: 你必须验证每个工具调用的成功与否。如果任何工具�
     ```
     *   Populate fields with actual values. Use the current timestamp.
 5.  **写入文件：**
-    *   将确认的 Specification 内容写入 `.Docs/任务详情/<track_id>/需求规格.md`。
+    *   将确认的 Specification 内容写入 `.Docs/任务详情/<track_id>/需求说明.md`。
     *   将确认的 Plan 内容写入 `.Docs/任务详情/<track_id>/执行计划.md`。
 6.  **更新任务清单文件：**
     -   **宣布：** 通知用户你正在更新任务清单文件。

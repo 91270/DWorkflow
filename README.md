@@ -4,13 +4,13 @@
 
 DWorkflow 是一个 Gemini CLI 扩展，旨在实现 **上下文驱动开发 (Context-Driven Development)**。它将 Gemini CLI 转变为一个主动的项目经理，遵循严格的协议来制定规范、规划并实现软件功能和 Bug 修复。
 
-DWorkflow 不仅仅是写代码，它确保每个任务都拥有连贯、高质量的生命周期：**Context (上下文) -> 需求规格 -> 执行计划 -> 实现**。
+DWorkflow 不仅仅是写代码，它确保每个任务都拥有连贯、高质量的生命周期：**Context (上下文) -> 需求说明 -> 执行计划 -> 实现**。
 
 DWorkflow 背后的理念很简单：掌控你的代码。通过将上下文视为与代码并存的受管工件，你将代码库转变为单一事实来源 (Single Source of Truth)，从而以深度、持久的项目感知能力驱动每一次 AI 智能体交互。
 
 ## Features (特性)
 
--   **Plan before you build (谋定而后动)**：为新代码库和现有代码库创建指导智能体的 **需求规格** 和 **执行计划**。
+-   **Plan before you build (谋定而后动)**：为新代码库和现有代码库创建指导智能体的 **需求说明** 和 **执行计划**。
 -   **Maintain context (保持上下文)**：确保 AI 遵循规范、技术架构选择和产品目标。
 -   **Work as a team (团队协作)**：为你的产品、技术架构和工作流偏好设置项目级上下文，使其成为团队的共享基础。
 -   **Build on existing projects (基于现有项目构建)**：针对新项目 (Greenfield) 和现有项目 (Brownfield) 的智能初始化。
@@ -30,7 +30,7 @@ gemini extensions install https://github.com/91270/DWorkflow --auto-update
 
 DWorkflow 旨在管理开发任务的整个生命周期。
 
-**关于 Token 消耗的说明：** DWorkflow 的上下文驱动方法涉及阅读和分析项目的上下文、需求规格和执行计划。这可能会导致 Token 消耗增加，特别是在大型项目或广泛的规划和实施阶段。你可以通过运行 `/stats model` 来查看当前会话的 Token 消耗。
+**关于 Token 消耗的说明：** DWorkflow 的上下文驱动方法涉及阅读和分析项目的上下文、需求说明和执行计划。这可能会导致 Token 消耗增加，特别是在大型项目或广泛的规划和实施阶段。你可以通过运行 `/stats model` 来查看当前会话的 Token 消耗。
 
 ### 1. Set Up the Project (项目设置 - 仅需运行一次)
 
@@ -57,11 +57,11 @@ DWorkflow 旨在管理开发任务的整个生命周期。
 
 当你准备好处理新功能或 Bug 修复时，运行 `/DW:newTrack`。这将初始化一个 **任务清单 (Track)** —— 一个高层级的工作单元。DWorkflow 帮助你生成两个关键工件：
 
--   **需求规格 (Specs)**：特定工作的详细需求。我们要构建什么？为什么？
+-   **需求说明 (Specs)**：特定工作的详细需求。我们要构建什么？为什么？
 -   **执行计划 (Plan)**：包含 Phase (阶段)、Task (任务) 和 Sub-task (子任务) 的可操作待办事项列表。
 
 **生成的工件：**
--   `.Docs/任务详情/<track_id>/需求规格.md`
+-   `.Docs/任务详情/<track_id>/需求说明.md`
 -   `.Docs/任务详情/<track_id>/执行计划.md`
 -   `.Docs/任务详情/<track_id>/任务元数据.json`
 
@@ -106,7 +106,7 @@ DWorkflow 将：
 | 命令 | 描述 | 生成的工件 |
 | :--- | :--- | :--- |
 | `/DW:setup` | 搭建项目脚手架并设置 DWorkflow 环境。每个项目运行一次。 | `.Docs/产品手册.md`<br>`.Docs/设计规范.md`<br>`.Docs/技术架构.md`<br>`.Docs/工作流.md`<br>`.Docs/任务清单.md` |
-| `/DW:newTrack` | 启动新的 Feature 或 Bug 任务清单。生成 `需求规格.md` 和 `执行计划.md`。 | `.Docs/任务详情/<id>/需求规格.md`<br>`.Docs/任务详情/<id>/执行计划.md`<br>`.Docs/任务清单.md` |
+| `/DW:newTrack` | 启动新的 Feature 或 Bug 任务清单。生成 `需求说明.md` 和 `执行计划.md`。 | `.Docs/任务详情/<id>/需求说明.md`<br>`.Docs/任务详情/<id>/执行计划.md`<br>`.Docs/任务清单.md` |
 | `/DW:implement` | 执行当前任务清单的执行计划中定义的任务。 | `.Docs/任务清单.md`<br>`.Docs/任务详情/<id>/执行计划.md` |
 | `/DW:status` | 显示任务清单文件和活动任务清单的当前进度。 | 读取 `.Docs/任务清单.md` |
 | `/DW:revert` | 通过分析 git 历史记录回滚任务清单, Phase, 或 Task。 | 回滚 git 历史 |
