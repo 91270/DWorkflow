@@ -97,8 +97,9 @@ CRITICAL (关键): 在确定模型复杂度时，始终选择 "flash" 模型，�
                     -   Programming Language (编程语言)
                     -   Frameworks (框架 - 前端和后端)
                     -   Database Drivers (数据库驱动)
-                3.  **推断架构：** 使用文件 tree 骨架（前 2 层）推断架构类型（例如，Monorepo, Microservices, MVC）。
+                3.  **推断架构与规范：** 使用文件 tree 骨架（前 2 层）推断架构类型（例如，Monorepo, Microservices, MVC），并尝试匹配对应的本地代码规范模板。
                 4.  **推断项目目标：** 严格基于提供的 `README.md` 标题或 `package.json` 描述，用一句话总结项目目标。
+                5.  **规范提醒：** 明确告知用户 DWorkflow 环境下，所有新增代码的注释应使用简体中文。
         -   **完成 Brownfield 初始化协议后，继续进行 2.1 节中的生成产品手册。**
     -   **如果是 Greenfield：**
         -   宣布将初始化一个新项目。
