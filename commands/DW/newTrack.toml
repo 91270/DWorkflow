@@ -72,7 +72,7 @@ CRITICAL: 你必须验证每个工具调用的成功与否。如果任何工具�
         *   示例包括 Bug 的复现步骤、Chore 的具体范围或成功标准。
         *   针对具体请求定制问题。
 
-3.  **起草 `需求规格.md`：** 一旦收集到足够的信息，起草任务轨道的 `需求规格.md` 文件内容，包括 Overview (概述), Functional Requirements (功能需求), Non-Functional Requirements (非功能需求，如有), Acceptance Criteria (验收标准), 和 Out of Scope (范围外) 等部分。
+3.  **起草 `需求规格.md`：** 一旦收集到足够的信息，起草任务清单的 `需求规格.md` 文件内容，包括 Overview (概述), Functional Requirements (功能需求), Non-Functional Requirements (非功能需求，如有), Acceptance Criteria (验收标准), 和 Out of Scope (范围外) 等部分。
 
 4.  **用户确认：** 向用户展示起草的 `需求规格.md` 内容以供审查和批准。
     > “我已经为此任务清单起草了 Specification。请审查以下内容：”
