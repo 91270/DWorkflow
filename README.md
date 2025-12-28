@@ -11,11 +11,11 @@ DWorkflow 背后的理念很简单：掌控你的代码。通过将上下文视�
 ## Features (特性)
 
 -   **Plan before you build (谋定而后动)**：为新代码库和现有代码库创建指导智能体的 Spec (规格) 和 Plan (计划)。
--   **Maintain context (保持上下文)**：确保 AI 遵循风格指南、技术栈选择和产品目标。
+-   **Maintain context (保持上下文)**：确保 AI 遵循规范、技术栈选择和产品目标。
 -   **Iterate safely (安全迭代)**：在编写代码之前审查计划，让你牢牢掌握控制权。
 -   **Work as a team (团队协作)**：为你的产品、技术栈和工作流偏好设置项目级上下文，使其成为团队的共享基础。
 -   **Build on existing projects (基于现有项目构建)**：针对新项目 (Greenfield) 和现有项目 (Brownfield) 的智能初始化。
--   **Smart revert (智能回滚)**：Git 感知的回滚命令，理解工作逻辑单元（Track, Phase, Task）而不仅仅是 Commit Hash。
+-   **Smart revert (智能回滚)**：Git 感知的回滚命令，理解工作逻辑单元（任务轨道, Phase, Task）而不仅仅是 Commit Hash。
 
 ## Installation (安装)
 
@@ -43,28 +43,28 @@ DWorkflow 旨在管理开发任务的整个生命周期。
 -   **Workflow (工作流)**：设置团队偏好（例如 TDD、提交策略）。使用 [workflow.md](templates/workflow.md) 作为可自定义的模板。
 
 **生成的工件 (Artifacts)：**
--   `DWorkflow/product.md`
--   `DWorkflow/product-guidelines.md`
--   `DWorkflow/tech-stack.md`
--   `DWorkflow/workflow.md`
--   `DWorkflow/code_styleguides/`
--   `DWorkflow/tracks.md`
+-   `.Docs/产品手册.md`
+-   `.Docs/设计规范.md`
+-   `.Docs/技术栈.md`
+-   `.Docs/工作流.md`
+-   `.Docs/代码规范/`
+-   `.Docs/任务轨道.md`
 
 ```bash
 /DW:setup
 ```
 
-### 2. Start a New Track (启动新轨道 - Feature 或 Bug)
+### 2. Start a New Track (启动新任务轨道 - Feature 或 Bug)
 
-当你准备好处理新功能或 Bug 修复时，运行 `/DW:newTrack`。这将初始化一个 **Track (轨道)** —— 一个高层级的工作单元。DWorkflow 帮助你生成两个关键工件：
+当你准备好处理新功能或 Bug 修复时，运行 `/DW:newTrack`。这将初始化一个 **任务轨道 (Track)** —— 一个高层级的工作单元。DWorkflow 帮助你生成两个关键工件：
 
 -   **Specs (规格)**：特定工作的详细需求。我们要构建什么？为什么？
 -   **Plan (计划)**：包含 Phase (阶段)、Task (任务) 和 Sub-task (子任务) 的可操作待办事项列表。
 
 **生成的工件：**
--   `DWorkflow/tracks/<track_id>/spec.md`
--   `DWorkflow/tracks/<track_id>/plan.md`
--   `DWorkflow/tracks/<track_id>/metadata.json`
+-   `.Docs/任务详情/<track_id>/spec.md`
+-   `.Docs/任务详情/<track_id>/plan.md`
+-   `.Docs/任务详情/<track_id>/metadata.json`
 
 ```bash
 /DW:newTrack
@@ -72,13 +72,13 @@ DWorkflow 旨在管理开发任务的整个生命周期。
 /DW:newTrack "Add a dark mode toggle to the settings page"
 ```
 
-### 3. Implement the Track (实现轨道)
+### 3. Implement the Track (实现任务轨道)
 
 批准计划后，运行 `/DW:implement`。你的编码智能体随后将按照 `plan.md` 文件工作，在完成任务时将其勾选。
 
 **更新的工件：**
--   `DWorkflow/tracks.md` (状态更新)
--   `DWorkflow/tracks/<track_id>/plan.md` (状态更新)
+-   `.Docs/任务轨道.md` (状态更新)
+-   `.Docs/任务详情/<track_id>/plan.md` (状态更新)
 -   项目上下文文件 (完成后同步)
 
 ```bash
@@ -106,11 +106,11 @@ DWorkflow 将：
 
 | Command | Description (描述) | Artifacts (工件) |
 | :--- | :--- | :--- |
-| `/DW:setup` | 搭建项目脚手架并设置 DWorkflow 环境。每个项目运行一次。 | `DWorkflow/product.md`<br>`DWorkflow/product-guidelines.md`<br>`DWorkflow/tech-stack.md`<br>`DWorkflow/workflow.md`<br>`DWorkflow/tracks.md` |
-| `/DW:newTrack` | 启动新的 Feature 或 Bug Track。生成 `spec.md` 和 `plan.md`。 | `DWorkflow/tracks/<id>/spec.md`<br>`DWorkflow/tracks/<id>/plan.md`<br>`DWorkflow/tracks.md` |
-| `/DW:implement` | 执行当前 Track 的 Plan 中定义的任务。 | `DWorkflow/tracks.md`<br>`DWorkflow/tracks/<id>/plan.md` |
-| `/DW:status` | 显示 Tracks 文件和活动 Tracks 的当前进度。 | 读取 `DWorkflow/tracks.md` |
-| `/DW:revert` | 通过分析 git 历史记录回滚 Track, Phase, 或 Task。 | 回滚 git 历史 |
+| `/DW:setup` | 搭建项目脚手架并设置 DWorkflow 环境。每个项目运行一次。 | `.Docs/产品手册.md`<br>`.Docs/设计规范.md`<br>`.Docs/技术栈.md`<br>`.Docs/工作流.md`<br>`.Docs/任务轨道.md` |
+| `/DW:newTrack` | 启动新的 Feature 或 Bug 任务轨道。生成 `spec.md` 和 `plan.md`。 | `.Docs/任务详情/<id>/spec.md`<br>`.Docs/任务详情/<id>/plan.md`<br>`.Docs/任务轨道.md` |
+| `/DW:implement` | 执行当前任务轨道的 Plan 中定义的任务。 | `.Docs/任务轨道.md`<br>`.Docs/任务详情/<id>/plan.md` |
+| `/DW:status` | 显示任务轨道文件和活动任务轨道的当前进度。 | 读取 `.Docs/任务轨道.md` |
+| `/DW:revert` | 通过分析 git 历史记录回滚任务轨道, Phase, 或 Task。 | 回滚 git 历史 |
 
 ## Resources (资源)
 
