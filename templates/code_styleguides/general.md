@@ -1,23 +1,23 @@
-# General Code Style Principles
+# 通用代码风格原则 (General Code Style Principles)
 
-This document outlines general coding principles that apply across all languages and frameworks used in this project.
+本文档概述了适用于本项目中使用的所有语言和框架的通用编码原则。
 
-## Readability
-- Code should be easy to read and understand by humans.
-- Avoid overly clever or obscure constructs.
+## 可读性 (Readability)
+- 代码应易于人类阅读和理解。
+- 避免过于聪明或晦涩的构造。
 
-## Consistency
-- Follow existing patterns in the codebase.
-- Maintain consistent formatting, naming, and structure.
+## 一致性 (Consistency)
+- 遵循代码库中的现有模式。
+- 保持一致的格式、命名和结构。
 
-## Simplicity
-- Prefer simple solutions over complex ones.
-- Break down complex problems into smaller, manageable parts.
+## 简洁性 (Simplicity)
+- 优先选择简单的解决方案，而不是复杂的解决方案。
+- 将复杂问题分解为更小、更易于管理的部分。
 
-## Maintainability
-- Write code that is easy to modify and extend.
-- Minimize dependencies and coupling.
+## 可维护性 (Maintainability)
+- 编写易于修改和扩展的代码。
+- 最小化依赖和耦合。
 
-## Documentation
-- Document *why* something is done, not just *what*.
-- Keep documentation up-to-date with code changes.
+## 文档 (Documentation)
+- 记录 *为什么* 要这样做，而不仅仅是 *做了什么*。
+- 保持文档与代码更改同步更新。
